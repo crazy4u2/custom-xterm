@@ -13,14 +13,6 @@ const USE_BINARY = os.platform() !== "win32";
 
 app.use(cors()); // cors 해제
 
-app.get("/", (req, res) => {
-  // lgtm [js/missing-rate-limiting]
-  console.log(req, res);
-  res.sendFile(__dirname + "/build/index.html");
-});
-
-app.use("/static", express.static(__dirname + "/static"));
-
 app.post("/terminals", (req, res) => {
   const env = Object.assign({}, process.env);
   env["COLORTERM"] = "truecolor";
